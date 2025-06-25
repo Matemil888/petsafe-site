@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a Dog - PetSafe</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function generateQRCode() {
+            const name = document.getElementById("name").value;
+            const breed = document.getElementById("breed").value;
+            const contact = document.getElementById("contact").value;
+            const id = Math.floor(Math.random() * 100000); // временный ID
+
+            const dogPageURL = `https://matemil888.github.io/petsafe-site/dog${id}.html`;
+
+            const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${dogPageURL}&size=150x150`;
+
+            document.getElementById("result").innerHTML = `
+                <h2>QR Code для ${name}</h2>
+                <p><strong>Breed:</strong> ${breed}</p>
+                <p><strong>Contact:</strong> ${contact}</p>
+                <img src="${qrURL}" alt="QR Code">
+                <p>Ссылка: <a href="${dogPageURL}" target="_blank">${dogPageURL}</a></p>
+                <p><em>Важно: Страница ещё не создана. Добавь dog${id}.html вручную.</em></p>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <h1>Добавить собаку</h1>
+    <label>Имя: <input type="text" id="name"></label><br><br>
+    <label>Порода: <input type="text" id="breed"></label><br><br>
+    <label>Контакт: <input type="text" id="contact"></label><br><br>
+    <button onclick="generateQRCode()">Сгенерировать QR-код</button>
+
+    <div id="result" style="margin-top: 20px;"></div>
+    <p><a href="index.html">← Назад</a></p>
+</body>
+</html>
